@@ -108,7 +108,7 @@ public class TransactionIntegrationTests {
 		Transaction t = new Transaction(100, Instant.now(), 0.0);
 		when(mockTransactions.findById(100L)).thenReturn(Optional.of(t));
 		
-		Ticket ti = new Ticket(1000, 20.0, "Aikuinen", this.event, t);
+		Ticket ti = new Ticket(1000, 20.0, null, null, "Aikuinen", this.event, t);
 		when(mockTickets.save(any(Ticket.class))).thenReturn(ti);
 		
 		TicketDTO tiDto = new TicketDTO(ti); 

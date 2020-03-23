@@ -22,7 +22,7 @@ import fi.haagahelia.ohjelmistoprojekti1.ticketguru.model.Event;
 import fi.haagahelia.ohjelmistoprojekti1.ticketguru.repository.EventRepository;
 
 @RestController
-@RequestMapping("/events")
+@RequestMapping("/api/events")
 public class EventsController {
 
 	@Autowired

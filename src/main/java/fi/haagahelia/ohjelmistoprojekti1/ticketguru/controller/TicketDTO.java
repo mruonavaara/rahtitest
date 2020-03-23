@@ -1,17 +1,25 @@
 package fi.haagahelia.ohjelmistoprojekti1.ticketguru.controller;
 
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+
 import fi.haagahelia.ohjelmistoprojekti1.ticketguru.model.Ticket;
 
 public class TicketDTO {
 	private long id;
+	private String code;
+	private Instant used;
 	private double price;
 	private String type;
 	private long eventId;
 	private long transactionId;
 	
-	public TicketDTO(long id, double price, String type, long eventId, long transactionId) {
+	public TicketDTO(long id, String code, Instant used, double price, String type, long eventId, long transactionId) {
 		super();
 		this.id = id;
+		this.code = code;
+		this.used = used;
 		this.price = price;
 		this.type = type;
 		this.eventId = eventId;
@@ -20,6 +28,8 @@ public class TicketDTO {
 	
 	public TicketDTO(Ticket ticket) {
 		this.id = ticket.getId();
+		this.code = ticket.getCode();
+		this.used = ticket.getUsed();
 		this.price = ticket.getPrice();
 		this.type = ticket.getType();
 		this.eventId = ticket.getEvent().getId();
@@ -32,6 +42,22 @@ public class TicketDTO {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public Instant getUsed() {
+		return used;
+	}
+
+	public void setUsed(Instant used) {
+		this.used = used;
 	}
 
 	public double getPrice() {

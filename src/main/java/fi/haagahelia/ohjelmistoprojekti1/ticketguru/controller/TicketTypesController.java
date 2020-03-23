@@ -30,13 +30,13 @@ public class TicketTypesController {
 	@Autowired 
 	EventRepository eventRepository;
 	
-	@GetMapping("/events/{eventId}/tickettypes")
+	@GetMapping("/api/events/{eventId}/tickettypes")
 	public List<TicketType> getTicketTypes(@PathVariable long eventId) {
 		
 		return ticketTypeRepository.findAllByEvent_Id(eventId); 
 	}
 	
-	@PostMapping("/events/{eventId}/tickettypes")
+	@PostMapping("/api/events/{eventId}/tickettypes")
 	@ResponseStatus(HttpStatus.CREATED)
 	public TicketType addTicketType(@Valid @RequestBody TicketType newTicketType, @PathVariable long eventId) {
 		Optional<Event> result = eventRepository.findById(eventId);
@@ -50,7 +50,7 @@ public class TicketTypesController {
 		return ticketTypeRepository.save(newTicketType);
 	}
 	
-	@PutMapping("/tickettypes/{id}")
+	@PutMapping("/api/tickettypes/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public TicketType updateTicketType(@Valid @RequestBody TicketType updatedTicketType, @PathVariable long id) {
 		Optional<TicketType> ticketTypeResult = ticketTypeRepository.findById(id);
@@ -67,7 +67,7 @@ public class TicketTypesController {
 	}
 
 	
-	@DeleteMapping("/tickettypes/{id}")
+	@DeleteMapping("/api/tickettypes/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteTicketType(@PathVariable long id) {
 		

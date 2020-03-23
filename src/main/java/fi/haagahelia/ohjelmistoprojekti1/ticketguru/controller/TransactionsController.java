@@ -21,7 +21,7 @@ import fi.haagahelia.ohjelmistoprojekti1.ticketguru.model.Transaction;
 import fi.haagahelia.ohjelmistoprojekti1.ticketguru.repository.TransactionRepository;
 
 @RestController
-@RequestMapping("/transactions")
+@RequestMapping("/api/transactions")
 public class TransactionsController {
 	
 	@Autowired

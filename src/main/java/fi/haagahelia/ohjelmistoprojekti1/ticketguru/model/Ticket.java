@@ -1,5 +1,9 @@
 package fi.haagahelia.ohjelmistoprojekti1.ticketguru.model;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,7 +20,8 @@ public class Ticket {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-
+	private String code;
+	private Instant used;
 	private double price;
 	private String type;
 	
@@ -25,7 +30,7 @@ public class Ticket {
 	private Event event;
 
 	/*
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)D
 	@JoinColumn(name="tickettype")
 	private TicketType ticketType;
 */
@@ -37,11 +42,18 @@ public class Ticket {
 
 	public Ticket() {
 		super();
+		UUID uuid = UUID.randomUUID();
+		this.code = uuid.toString();
 	}
 
-	public Ticket(long id, double price, String type, Event event, Transaction transaction) {
+	public Ticket(long id, double price, String code, Instant used, String type, Event event, Transaction transaction) {
 		super();
 		this.id = id;
+		
+		UUID uuid = UUID.randomUUID();
+		this.code = uuid.toString();
+		
+		this.used = used;
 		this.price = price;
 		this.type = type;
 		this.event = event;
@@ -54,6 +66,22 @@ public class Ticket {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public Instant getUsed() {
+		return used;
+	}
+
+	public void setUsed(Instant used) {
+		this.used = used;
 	}
 
 	public double getPrice() {

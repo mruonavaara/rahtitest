@@ -28,12 +28,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         		//.antMatchers("/").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .httpBasic()
-                .and()
-                .csrf().disable()
-                .headers().disable();
+        		.anyRequest().authenticated()
+                .and().cors()
+                .and().httpBasic()
+                .and().csrf().disable()
+                /*.headers().disable()*/;
     }
     
 }
