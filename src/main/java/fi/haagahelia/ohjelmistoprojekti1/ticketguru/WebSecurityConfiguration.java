@@ -26,12 +26,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	http.headers().frameOptions().sameOrigin(); // h2-console needs this
         http.authorizeRequests()
         		//.antMatchers("/").permitAll()
         		.anyRequest().authenticated()
                 .and().cors()
                 .and().httpBasic()
-                .and().csrf().disable()
+                .and().csrf().disable();
                 /*.headers().disable()*/;
     }
     
