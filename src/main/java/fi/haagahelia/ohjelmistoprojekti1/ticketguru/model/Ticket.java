@@ -28,12 +28,6 @@ public class Ticket {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="event")
 	private Event event;
-
-	/*
-	@ManyToOne(fetch = FetchType.LAZY)D
-	@JoinColumn(name="tickettype")
-	private TicketType ticketType;
-*/
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="transaction")
