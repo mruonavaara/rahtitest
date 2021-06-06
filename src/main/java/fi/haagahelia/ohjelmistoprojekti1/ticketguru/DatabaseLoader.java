@@ -23,10 +23,15 @@ public class DatabaseLoader implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		List<User> userList = Arrays.asList(new User("user1", "password1", new String[] { "ROLE_USER" }),
-				new User("user2", "password2", new String[] { "ROLE_USER", "ROLE_ADMIN" }));
+		User user1 = users.findByUsername("user1");
+		User user2 = users.findByUsername("user2");
 
-		users.saveAll(userList);
+		if (user1 == null && user2 == null) {
+			List<User> userList = Arrays.asList(new User("user1", "password1", new String[] { "ROLE_USER" }),
+					new User("user2", "password2", new String[] { "ROLE_USER", "ROLE_ADMIN" }));
+
+			users.saveAll(userList);
+		}
 	}
 
 }
