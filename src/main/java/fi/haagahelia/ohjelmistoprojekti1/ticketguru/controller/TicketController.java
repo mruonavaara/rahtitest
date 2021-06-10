@@ -71,6 +71,7 @@ public class TicketController {
 		ticket.setPrice(ticketDto.getPrice());
 		ticket.setType(ticketDto.getType());
 
+		
 		return tickets.save(ticket);
 	}
 

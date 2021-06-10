@@ -1,5 +1,6 @@
 package fi.haagahelia.ohjelmistoprojekti1.ticketguru.controller;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,7 +30,9 @@ public class TransactionsController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Transaction addTransaction(@RequestBody Transaction newTransaction) {
+	public Transaction addTransaction() {
+		Transaction newTransaction = new Transaction();
+		newTransaction.setTime(Instant.now());
 		return transactions.save(newTransaction);
 	}
 	
