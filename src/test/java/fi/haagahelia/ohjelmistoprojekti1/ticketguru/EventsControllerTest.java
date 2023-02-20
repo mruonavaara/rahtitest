@@ -32,6 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import fi.haagahelia.ohjelmistoprojekti1.ticketguru.controller.EventsController;
@@ -49,6 +50,7 @@ public class EventsControllerTest {
 	private EventRepository eventRepositoryMock;
 
 	@Test
+	@WithMockUser(username = "user1", password = "password1", roles = "USER")
 	public void shouldGetAllEvents() throws Exception {
 		// Event(long id, String name, LocalDateTime time, String venue, String city, int ticketsTotal)
 		Event event = new Event(0L, "Nimi", LocalDateTime.of(2020, 3, 1, 19, 0), "Paikka", "Kaupunki", 100);
@@ -58,10 +60,10 @@ public class EventsControllerTest {
 		when(eventRepositoryMock.findAll()).thenReturn(events);
 		
 		
-		mockMvc.perform(get("/events")
+		mockMvc.perform(get("/api/events")
 			      .contentType(MediaType.APPLICATION_JSON))
 			      .andExpect(status().isOk())
 			      .andExpect(jsonPath("$", hasSize(1)))
-			      .andExpect(jsonPath("$[0].name", is("Huuhaa")));
+			      .andExpect(jsonPath("$[0].name", is("Nimi")));
 	}
 }
