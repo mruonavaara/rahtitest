@@ -78,7 +78,7 @@ public class TransactionIntegrationTests {
 
 	@Test
 	void createTransaction() {
-		String url = "/transactions";
+		String url = "/api/transactions";
 		Transaction t = new Transaction(100, Instant.now(), 0.0);
 		
 		when(mockTransactions.save(any(Transaction.class))).thenReturn(t);
@@ -91,7 +91,7 @@ public class TransactionIntegrationTests {
 
 	@Test
 	void deleteTransaction() {
-		String url = "/transactions/100"; 
+		String url = "/api/transactions/100"; 
 		
 		doNothing().when(mockTransactions).deleteById(100L);
 
@@ -103,7 +103,7 @@ public class TransactionIntegrationTests {
 
 	@Test
 	void createTicketForTransaction() {
-		String url = "/transactions/100/tickets";
+		String url = "/api/transactions/100/tickets";
 		
 		Transaction t = new Transaction(100, Instant.now(), 0.0);
 		when(mockTransactions.findById(100L)).thenReturn(Optional.of(t));
