@@ -8,8 +8,9 @@ RUN ./mvnw dependency:go-offline
 COPY ./src ./src
 RUN ./mvnw -DskipTests clean install
 RUN ls -la ./target
-RUN cp ./target/*.jar /opt/app/
+# RUN cp ./target/*.jar /opt/app/
+RUN find ./target -type f -name '*.jar' -exec cp {} /opt/app/app.jar \; -quit
 RUN ls -la /opt/app
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/opt/app/*.jar" ]
+ENTRYPOINT ["java", "-jar", "/opt/app/app.jar" ]
