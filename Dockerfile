@@ -7,8 +7,9 @@ RUN echo $JAVA_HOME
 RUN ./mvnw dependency:go-offline
 COPY ./src ./src
 RUN ./mvnw -DskipTests clean install
-RUN ls -la .
-COPY ./target/*.jar /opt/app/*.jar
+RUN ls -la ./target
+COPY ./target/*.jar /opt/app/
+RUN ls -la /opt/app
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/opt/app/*.jar" ]
