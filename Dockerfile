@@ -8,7 +8,7 @@ RUN ./mvnw dependency:go-offline
 COPY ./src ./src
 RUN ./mvnw -DskipTests clean install
 RUN ls -la ./target
-COPY ./target/*.jar /opt/app/
+RUN cp ./target/*.jar /opt/app/
 RUN ls -la /opt/app
 
 EXPOSE 8080
